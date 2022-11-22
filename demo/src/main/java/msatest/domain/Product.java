@@ -1,5 +1,6 @@
 package msatest.domain;
 
+import msatest.domain.ProductChanged;
 import msatest.DemoApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -36,6 +37,11 @@ public class Product  {
 
     @PostPersist
     public void onPostPersist(){
+
+
+        ProductChanged productChanged = new ProductChanged(this);
+        productChanged.publishAfterCommit();
+
     }
 
     public static ProductRepository repository(){
